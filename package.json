@@ -1,0 +1,31 @@
+{
+  "name": "hexlet-practice-lvl1-andrey-bgm",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "brain-games": "dist/bin/brain-games.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrey-bgm/project-lvl1-s69.git"
+  },
+  "author": "andrey-bgm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrey-bgm/project-lvl1-s69/issues"
+  },
+  "homepage": "https://github.com/andrey-bgm/project-lvl1-s69#readme",
+  "devDependencies": {
+    "babel-cli": "6.*",
+    "babel-core": "6.*",
+    "babel-preset-env": "1.*",
+    "babel-preset-stage-0": "6.*"
+  }
+}
