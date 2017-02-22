@@ -12,25 +12,19 @@ const makeExpression = (question, answer) => pairs.cons(question, answer);
 const expressionQuestion = expr => pairs.car(expr);
 const expressionAnswer = expr => pairs.cdr(expr);
 
-const biQuestion = (pair, f) => `${pairs.car(pair)} ${f} ${pairs.cdr(pair)}`;
-
-const expressions = lists.l(
-  makeExpression(
-    args => biQuestion(args, '+'),
-    args => (pairs.car(args) + pairs.cdr(args)).toString(),
-  ),
-  makeExpression(
-    args => biQuestion(args, '-'),
-    args => (pairs.car(args) - pairs.cdr(args)).toString(),
-  ),
-  makeExpression(
-    args => biQuestion(args, '*'),
-    args => (pairs.car(args) * pairs.cdr(args)).toString(),
-  ),
+const biExpression = (fn, fnStr) => makeExpression(
+  args => `${pairs.car(args)} ${fnStr} ${pairs.cdr(args)}`,
+  args => (fn(pairs.car(args), pairs.cdr(args))).toString(),
 );
 
-const generator = taskGenerator(
-  () => {
+const expressions = lists.l(
+  biExpression((a, b) => a + b, '+'),
+  biExpression((a, b) => a - b, '-'),
+  biExpression((a, b) => a * b, '*'),
+);
+
+const makeGenerator = () => {
+  const exprGenerator = () => {
     const n = randomInt(0, lists.length(expressions) - 1);
     const expr = lists.get(n, expressions);
     const args = pairs.cons(
@@ -40,20 +34,26 @@ const generator = taskGenerator(
     const exprData = pairs.cons(expr, args);
 
     return exprData;
-  },
-  (exprData) => {
+  };
+
+  const question = (exprData) => {
     const expr = pairs.car(exprData);
     const args = pairs.cdr(exprData);
 
     return expressionQuestion(expr)(args);
-  },
-  (exprData) => {
+  };
+
+  const answer = (exprData) => {
     const expr = pairs.car(exprData);
     const args = pairs.cdr(exprData);
 
     return expressionAnswer(expr)(args);
-  },
-);
+  };
+
+  return taskGenerator(exprGenerator, question, answer);
+};
+
+const generator = makeGenerator();
 
 const game = () => {
   const rules = 'What is the result of the expression?';
