@@ -36,19 +36,15 @@ const makeGenerator = () => {
     return exprData;
   };
 
-  const question = (exprData) => {
+  const exprDataDo = (exprData, exprFn) => {
     const expr = pairs.car(exprData);
     const args = pairs.cdr(exprData);
 
-    return expressionQuestion(expr)(args);
+    return exprFn(expr)(args);
   };
 
-  const answer = (exprData) => {
-    const expr = pairs.car(exprData);
-    const args = pairs.cdr(exprData);
-
-    return expressionAnswer(expr)(args);
-  };
+  const question = exprData => exprDataDo(exprData, expressionQuestion);
+  const answer = exprData => exprDataDo(exprData, expressionAnswer);
 
   return taskGenerator(exprGenerator, question, answer);
 };
