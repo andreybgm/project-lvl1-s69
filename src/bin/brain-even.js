@@ -1,6 +1,8 @@
 #! /usr/bin/env node
 import readlineSync from 'readline-sync';
 
+const isEven = n => n % 2 === 0;
+
 const step = (numbers, name) => {
   if (numbers.length === 0) {
     console.log(`Congratulations, ${name}!`);
@@ -8,7 +10,7 @@ const step = (numbers, name) => {
   }
 
   const number = numbers[0];
-  const expected = number % 2 === 0 ? 'yes' : 'no';
+  const expected = isEven(number) ? 'yes' : 'no';
 
   console.log(`Question: ${number}`);
   const answer = readlineSync.question('Your answer: ');
