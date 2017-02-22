@@ -5,7 +5,8 @@
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -35,6 +36,8 @@
     "eslint-plugin-import": "^2.2.0"
   },
   "dependencies": {
+    "hexlet-pairs": "^0.1.4",
+    "hexlet-pairs-data": "^0.4.5",
     "readline-sync": "^1.4.6"
   }
 }
