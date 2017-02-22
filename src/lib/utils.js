@@ -12,4 +12,7 @@ const gcd = (a, b) => {
   return gcd(min, remainder);
 };
 
-export { isEven, gcd };
+const randomInt = (min, max) =>
+  min + Math.floor(Math.random() * ((max - min) + 1));
+
+export { isEven, gcd, randomInt };

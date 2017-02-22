@@ -1,17 +1,20 @@
-import { l } from 'hexlet-pairs-data';
 import brainGame from '../lib/brain-game';
-import brainTask from '../lib/brain-task';
-import { isEven } from '../lib/utils';
+import { isEven, randomInt } from '../lib/utils';
+import taskGenerator from '../lib/task-generator';
 
-const answer = n => (isEven(n) ? 'yes' : 'no');
+const taskCount = 3;
+const minValue = 1;
+const maxValue = 100;
+
+const generator = taskGenerator(
+  () => randomInt(minValue, maxValue),
+  number => number.toString(),
+  number => (isEven(number) ? 'yes' : 'no'),
+);
 
 const game = () => {
   const rules = 'Answer "yes" if a number is even, otherwise answer "no".';
-  const tasks = l(
-    brainTask.make('15', answer(15)),
-    brainTask.make('6', answer(6)),
-    brainTask.make('15', answer(15)),
-  );
+  const tasks = generator(taskCount);
   brainGame(rules, tasks);
 };
 

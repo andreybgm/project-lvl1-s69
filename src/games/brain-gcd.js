@@ -1,17 +1,22 @@
-import { l } from 'hexlet-pairs-data';
+import * as pairs from 'hexlet-pairs';
 import brainGame from '../lib/brain-game';
-import brainTask from '../lib/brain-task';
-import { gcd } from '../lib/utils';
+import { gcd, randomInt } from '../lib/utils';
+import taskGenerator from '../lib/task-generator';
 
-const answer = (a, b) => gcd(a, b).toString();
+const taskCount = 3;
+const minValue = 2;
+const maxValue = 100;
+
+const generator = taskGenerator(
+  () => pairs.cons(
+    randomInt(minValue, maxValue), randomInt(minValue, maxValue)),
+  pair => `${pairs.car(pair)} ${pairs.cdr(pair)}`,
+  pair => gcd(pairs.car(pair), pairs.cdr(pair)).toString(),
+);
 
 const game = () => {
   const rules = 'Find the greatest common divisor of the given numbers.';
-  const tasks = l(
-    brainTask.make('25 50', answer(25, 50)),
-    brainTask.make('100 52', answer(100, 52)),
-    brainTask.make('3 9', answer(3, 9)),
-  );
+  const tasks = generator(taskCount);
   brainGame(rules, tasks);
 };
 
