@@ -1,6 +1,5 @@
-import brainGame from '../../lib/brain-game';
+import { run, taskGenerator } from '../../lib/game';
 import { randomInt } from '../../lib/utils';
-import taskGenerator from '../../lib/task-generator';
 import { randomProgression } from './utils';
 
 const taskCount = 3;
@@ -32,7 +31,7 @@ const generator = taskGenerator(
 const game = () => {
   const rules = 'What number is missing in this progression?';
   const tasks = generator(taskCount);
-  brainGame(rules, tasks);
+  run(rules, tasks);
 };
 
 export default game;

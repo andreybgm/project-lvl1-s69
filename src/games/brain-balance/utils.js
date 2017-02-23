@@ -35,9 +35,6 @@ const balance = (n) => {
   return iter(nArr);
 };
 
-// Kirill, is it Ok to suppress warnings in cases like this one?
-// The module can grow later...
-// FIXME: Add some more useful stuff in this module or make default export.
 /* eslint-disable import/prefer-default-export */
 export { balance };
 /* eslint-enable import/prefer-default-export */

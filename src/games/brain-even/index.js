@@ -1,6 +1,5 @@
-import brainGame from '../../lib/brain-game';
+import { run, taskGenerator } from '../../lib/game';
 import { isEven, randomInt } from '../../lib/utils';
-import taskGenerator from '../../lib/task-generator';
 
 const taskCount = 3;
 const minValue = 1;
@@ -15,7 +14,7 @@ const generator = taskGenerator(
 const game = () => {
   const rules = 'Answer "yes" if a number is even, otherwise answer "no".';
   const tasks = generator(taskCount);
-  brainGame(rules, tasks);
+  run(rules, tasks);
 };
 
 export default game;
