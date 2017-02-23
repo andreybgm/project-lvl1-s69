@@ -1,6 +1,6 @@
 {
   "name": "hexlet-practice-lvl1-andrey-bgm",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -9,10 +9,12 @@
     "brain-calc": "dist/bin/brain-calc.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "babel-node": "babel-node",
     "eslint": "eslint",
-    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "clean": "rm -rf dist",
+    "build-all": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "build": "npm run clean && npm run build-all",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -33,7 +35,8 @@
     "babel-preset-stage-0": "^6.22.0",
     "eslint": "^3.16.0",
     "eslint-config-airbnb-base": "^11.1.0",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint-plugin-import": "^2.2.0",
+    "jest": "^19.0.1"
   },
   "dependencies": {
     "hexlet-pairs": "^0.1.4",
