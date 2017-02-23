@@ -24,10 +24,8 @@ describe('randomProgression', () => {
     );
     const actualProgression = randomProgression(params, randomizer);
 
-    expect(randomizer.start.mock.calls[0])
-      .toEqual([start.min, start.max]);
-    expect(randomizer.step.mock.calls[0])
-      .toEqual([step.min, step.max]);
+    expect(randomizer.start.mock.calls[0]).toEqual([start.min, start.max]);
+    expect(randomizer.step.mock.calls[0]).toEqual([step.min, step.max]);
     expect(actualProgression).toEqual(expectedProgression);
   };
 
