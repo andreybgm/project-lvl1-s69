@@ -1,3 +1,6 @@
+import { run, taskGenerator } from './lib/game';
+import { randomInt } from './lib/utils';
+
 const balance = (n) => {
   const nArr = Math.abs(n).toString().split('')
     .map(v => Number.parseInt(v, 10));
@@ -35,6 +38,21 @@ const balance = (n) => {
   return iter(nArr);
 };
 
-/* eslint-disable import/prefer-default-export */
+const game = () => {
+  const taskCount = 3;
+  const minValue = 100;
+  const maxValue = 9999;
+
+  const generator = taskGenerator(
+    () => randomInt(minValue, maxValue),
+    number => number.toString(),
+    number => balance(number).toString(),
+  );
+
+  const rules = 'Balance the given number.';
+  const tasks = generator(taskCount);
+  run(rules, tasks);
+};
+
 export { balance };
-/* eslint-enable import/prefer-default-export */
+export default game;
