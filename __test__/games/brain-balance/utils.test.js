@@ -1,4 +1,4 @@
-import { balance } from '../../src/lib/utils';
+import { balance } from '../../../src/games/brain-balance/utils';
 
 test('balance', () => {
   expect(balance(13)).toBe(22);

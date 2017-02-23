@@ -1,6 +1,7 @@
-import brainGame from '../lib/brain-game';
-import { balance, randomInt } from '../lib/utils';
-import taskGenerator from '../lib/task-generator';
+import brainGame from '../../lib/brain-game';
+import { randomInt } from '../../lib/utils';
+import taskGenerator from '../../lib/task-generator';
+import { balance } from './utils';
 
 const taskCount = 3;
 const minValue = 100;

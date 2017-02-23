@@ -1,7 +1,7 @@
 import * as pairs from 'hexlet-pairs';
-import brainGame from '../lib/brain-game';
-import { gcd, randomInt } from '../lib/utils';
-import taskGenerator from '../lib/task-generator';
+import brainGame from '../../lib/brain-game';
+import { gcd, randomInt } from '../../lib/utils';
+import taskGenerator from '../../lib/task-generator';
 
 const taskCount = 3;
 const minValue = 2;
