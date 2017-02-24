@@ -12,12 +12,12 @@ const expressions = [
   biExpression((a, b) => a * b, '*'),
 ];
 
-const game = () => {
+const runGame = () => {
   const taskCount = 3;
   const minValue = 1;
   const maxValue = 100;
 
-  const generator = taskGenerator(
+  const generateTasks = taskGenerator(
     () => {
       const n = randomInt(0, expressions.length - 1);
       const expr = expressions[n];
@@ -33,8 +33,8 @@ const game = () => {
   );
 
   const rules = 'What is the result of the expression?';
-  const tasks = generator(taskCount);
+  const tasks = generateTasks(taskCount);
   run(rules, tasks);
 };
 
-export default game;
+export default runGame;

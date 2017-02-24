@@ -7,7 +7,9 @@ const makeProgression = (start, max, step, count) => {
   }
 
   const iter = (i, n, acc) => {
-    if (i < 1 || n + step > max) {
+    const endOfProgression = i < 1 || n + step > max;
+
+    if (endOfProgression) {
       return acc;
     }
 
@@ -31,7 +33,7 @@ const randomProgression = (params, randomizer = defaultRandomizer) => {
   return progression;
 };
 
-const game = () => {
+const runGame = () => {
   const taskCount = 3;
   const params = {
     rangeStart: 1,
@@ -41,7 +43,7 @@ const game = () => {
     count: 10,
   };
 
-  const generator = taskGenerator(
+  const generateTasks = taskGenerator(
     () => {
       const progression = randomProgression(params);
       const missingIndex = randomInt(0, progression.length - 1);
@@ -60,9 +62,9 @@ const game = () => {
   );
 
   const rules = 'What number is missing in this progression?';
-  const tasks = generator(taskCount);
+  const tasks = generateTasks(taskCount);
   run(rules, tasks);
 };
 
-export default game;
+export default runGame;
 export { makeProgression, randomProgression };

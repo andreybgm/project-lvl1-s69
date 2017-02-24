@@ -38,21 +38,21 @@ const balance = (n) => {
   return iter(nArr);
 };
 
-const game = () => {
+const runGame = () => {
   const taskCount = 3;
   const minValue = 100;
   const maxValue = 9999;
 
-  const generator = taskGenerator(
+  const generateTasks = taskGenerator(
     () => randomInt(minValue, maxValue),
     number => number.toString(),
     number => balance(number).toString(),
   );
 
   const rules = 'Balance the given number.';
-  const tasks = generator(taskCount);
+  const tasks = generateTasks(taskCount);
   run(rules, tasks);
 };
 
 export { balance };
-export default game;
+export default runGame;
