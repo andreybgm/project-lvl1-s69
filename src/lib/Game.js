@@ -10,7 +10,7 @@ const states = {
 
 const events = {
   start: 'start',
-  acceptName: 'takeName',
+  takeName: 'takeName',
   acceptQuestion: 'acceptQuestion',
   win: 'win',
   loss: 'loss',
