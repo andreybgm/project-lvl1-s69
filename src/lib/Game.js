@@ -11,7 +11,7 @@ const states = {
 const events = {
   start: 'start',
   takeName: 'takeName',
-  acceptQuestion: 'acceptQuestion',
+  acceptAnswer: 'acceptAnswer',
   win: 'win',
   loss: 'loss',
 };
@@ -21,7 +21,7 @@ const createFsm = (initial = states.notStarted) => StateMachine.create({
   events: [
     { name: events.start, from: states.notStarted, to: states.nameAsked },
     { name: events.takeName, from: states.nameAsked, to: states.questionAsked },
-    { name: events.acceptQuestion, from: states.questionAsked, to: states.questionAsked },
+    { name: events.acceptAnswer, from: states.questionAsked, to: states.questionAsked },
     { name: events.win, from: [states.nameAsked, states.questionAsked], to: events.win },
     { name: events.loss, from: states.questionAsked, to: states.loss },
   ],
@@ -69,7 +69,7 @@ export default class Game {
       const newFsm = sendFsmEvent(this.fsm, events.win);
       return new Game(this.rule, this.tasks, newFsm, this.userName, answer);
     } else if (answerCorrect) {
-      const newFsm = sendFsmEvent(this.fsm, events.acceptQuestion);
+      const newFsm = sendFsmEvent(this.fsm, events.acceptAnswer);
       return new Game(this.rule, this.tasks.slice(1), newFsm, this.userName, answer);
     }
 
