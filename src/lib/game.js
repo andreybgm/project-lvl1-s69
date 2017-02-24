@@ -3,6 +3,7 @@ import readlineSync from 'readline-sync';
 const run = (rules, tasks) => {
   const iter = (remainingTasks, name) => {
     if (!remainingTasks || remainingTasks.length === 0) {
+      console.log(`Congratulations, ${name}!`);
       return;
     }
 
@@ -32,8 +33,6 @@ const run = (rules, tasks) => {
   console.log(`Hello, ${name}!\n`);
 
   iter(tasks, name);
-
-  console.log(`Congratulations, ${name}!`);
 };
 
 const taskGenerator = (exprGenerator, question, answer) => {

@@ -1,7 +1,7 @@
 import {
   makeProgression,
   randomProgression,
-} from '../src/brain-progression';
+} from '../src/games/brain-progression';
 
 describe('progression', () => {
   test('should work', () => {

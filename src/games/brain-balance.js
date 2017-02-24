@@ -1,5 +1,10 @@
-import { run, taskGenerator } from './lib/game';
-import { randomInt } from './lib/utils';
+import { run, taskGenerator } from '../lib/game';
+import { randomInt } from '../lib/utils';
+
+const taskCount = 3;
+const minValue = 100;
+const maxValue = 9999;
+const rules = 'Balance the given number.';
 
 const balance = (n) => {
   const nArr = Math.abs(n).toString().split('')
@@ -38,18 +43,13 @@ const balance = (n) => {
   return iter(nArr);
 };
 
+const generateTasks = taskGenerator(
+  () => randomInt(minValue, maxValue),
+  number => number.toString(),
+  number => balance(number).toString(),
+);
+
 const runGame = () => {
-  const taskCount = 3;
-  const minValue = 100;
-  const maxValue = 9999;
-
-  const generateTasks = taskGenerator(
-    () => randomInt(minValue, maxValue),
-    number => number.toString(),
-    number => balance(number).toString(),
-  );
-
-  const rules = 'Balance the given number.';
   const tasks = generateTasks(taskCount);
   run(rules, tasks);
 };

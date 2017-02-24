@@ -1,4 +1,4 @@
-import { isPrime } from '../src/brain-prime';
+import { isPrime } from '../src/games/brain-prime';
 
 describe('isPrime', () => {
   test('should work', () => {

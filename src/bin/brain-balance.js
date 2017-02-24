@@ -1,5 +1,5 @@
 #! /usr/bin/env node
 
-import run from '../brain-balance';
+import run from '../games/brain-balance';
 
 run();

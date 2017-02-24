@@ -1,5 +1,16 @@
-import { run, taskGenerator } from './lib/game';
-import { randomInt } from './lib/utils';
+import { run, taskGenerator } from '../lib/game';
+import { randomInt } from '../lib/utils';
+
+const taskCount = 3;
+const progressionParams = {
+  rangeStart: 1,
+  rangeEnd: 999,
+  minStep: 2,
+  maxStep: 50,
+  count: 10,
+};
+const rules = 'What number is missing in this progression?';
+const missingNumberReplacement = '..';
 
 const makeProgression = (start, max, step, count) => {
   if (start > max) {
@@ -33,35 +44,25 @@ const randomProgression = (params, randomizer = defaultRandomizer) => {
   return progression;
 };
 
+const generateTasks = taskGenerator(
+  () => {
+    const progression = randomProgression(progressionParams);
+    const missingIndex = randomInt(0, progression.length - 1);
+
+    return { progression, missingIndex };
+  },
+  ({ progression, missingIndex }) => progression.reduce(
+      (acc, n, index) =>
+        [
+          acc.length === 0 ? '' : `${acc} `,
+          index === missingIndex ? missingNumberReplacement : n,
+        ].join(''),
+        '',
+    ),
+  ({ progression, missingIndex }) => progression[missingIndex].toString(),
+);
+
 const runGame = () => {
-  const taskCount = 3;
-  const params = {
-    rangeStart: 1,
-    rangeEnd: 999,
-    minStep: 2,
-    maxStep: 50,
-    count: 10,
-  };
-
-  const generateTasks = taskGenerator(
-    () => {
-      const progression = randomProgression(params);
-      const missingIndex = randomInt(0, progression.length - 1);
-
-      return { progression, missingIndex };
-    },
-    ({ progression, missingIndex }) => progression.reduce(
-        (acc, n, index) =>
-          [
-            acc.length === 0 ? '' : `${acc} `,
-            index === missingIndex ? '..' : n,
-          ].join(''),
-          '',
-      ),
-    ({ progression, missingIndex }) => progression[missingIndex].toString(),
-  );
-
-  const rules = 'What number is missing in this progression?';
   const tasks = generateTasks(taskCount);
   run(rules, tasks);
 };

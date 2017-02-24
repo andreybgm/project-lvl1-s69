@@ -1,4 +1,4 @@
-import { balance } from '../src/brain-balance';
+import { balance } from '../src/games/brain-balance';
 
 describe('balance', () => {
   test('should work', () => {
