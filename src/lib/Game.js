@@ -55,20 +55,18 @@ export default class Game {
   }
 
   giveQuestion() {
-    return this.tasks.length > 0 ?
-      this.tasks[0].question :
-      '';
+    return this.tasks.length > 0 ? this.tasks[0].question : '';
   }
 
   takeAnswer(answer) {
     const task = this.tasks[0];
-    const answerCorrect = task.answer === answer;
+    const correctAnswer = task.answer === answer;
     const lastTask = this.tasks.length === 1;
 
-    if (answerCorrect && lastTask) {
+    if (correctAnswer && lastTask) {
       const newFsm = sendFsmEvent(this.fsm, events.win);
       return new Game(this.rule, this.tasks, newFsm, this.userName, answer);
-    } else if (answerCorrect) {
+    } else if (correctAnswer) {
       const newFsm = sendFsmEvent(this.fsm, events.acceptQuestion);
       return new Game(this.rule, this.tasks.slice(1), newFsm, this.userName, answer);
     }

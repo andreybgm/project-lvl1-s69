@@ -5,8 +5,7 @@ const maxValue = 9999;
 const rule = 'Balance the given number.';
 
 const balance = (n) => {
-  const nArr = Math.abs(n).toString().split('')
-    .map(v => Number.parseInt(v, 10));
+  const nArr = Math.abs(n).toString().split('').map(v => Number.parseInt(v, 10));
   const sign = n < 0 ? '-' : '';
 
   const iter = (acc) => {

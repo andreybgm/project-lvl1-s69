@@ -1,8 +1,7 @@
 import readlineSync from 'readline-sync';
 import Game from './Game';
 
-const randomInt = (min, max) =>
-  min + Math.floor(Math.random() * ((max - min) + 1));
+const randomInt = (min, max) => min + Math.floor(Math.random() * ((max - min) + 1));
 
 const createTask = (question, answer) => ({ question, answer });
 
