@@ -4,8 +4,11 @@ import { isEven, randomInt } from '../lib/utils';
 const taskCount = 3;
 const minValue = 1;
 const maxValue = 100;
-const rules = 'Answer "yes" if a number is even, otherwise answer "no".';
 const answerOptions = { yes: 'yes', no: 'no' };
+const rules = [
+  `Answer "${answerOptions.yes}" if a number is even, `,
+  `otherwise answer "${answerOptions.no}".`,
+].join('');
 
 const generateTasks = taskGenerator(
   () => randomInt(minValue, maxValue),
