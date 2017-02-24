@@ -1,9 +1,22 @@
-import {
-  makeProgression,
-  randomProgression,
-} from '../src/games/brain-progression';
+import { makeProgression, randomProgression } from '../src/games/brain-progression';
 
-describe('progression', () => {
+const testRandomProgression = (params, start, step) => {
+  const randomizer = { start: jest.fn(), step: jest.fn() };
+  randomizer.start.mockReturnValue(start.value);
+  randomizer.step.mockReturnValue(step.value);
+
+  const expectedProgression = makeProgression(
+    start.value, params.rangeEnd,
+    step.value, params.count,
+  );
+  const actualProgression = randomProgression(params, randomizer);
+
+  expect(randomizer.start.mock.calls[0]).toEqual([start.min, start.max]);
+  expect(randomizer.step.mock.calls[0]).toEqual([step.min, step.max]);
+  expect(actualProgression).toEqual(expectedProgression);
+};
+
+describe('makeProgression', () => {
   test('should work', () => {
     expect(makeProgression(2, 6, 1, 5)).toEqual([2, 3, 4, 5, 6]);
     expect(makeProgression(2, 20, 3, 5)).toEqual([2, 5, 8, 11, 14]);
@@ -13,22 +26,6 @@ describe('progression', () => {
 });
 
 describe('randomProgression', () => {
-  const testRandomProgression = (params, start, step) => {
-    const randomizer = { start: jest.fn(), step: jest.fn() };
-    randomizer.start.mockReturnValue(start.value);
-    randomizer.step.mockReturnValue(step.value);
-
-    const expectedProgression = makeProgression(
-      start.value, params.rangeEnd,
-      step.value, params.count,
-    );
-    const actualProgression = randomProgression(params, randomizer);
-
-    expect(randomizer.start.mock.calls[0]).toEqual([start.min, start.max]);
-    expect(randomizer.step.mock.calls[0]).toEqual([step.min, step.max]);
-    expect(actualProgression).toEqual(expectedProgression);
-  };
-
   test('should work', () => {
     testRandomProgression(
       { rangeStart: 10, rangeEnd: 100, minStep: 1, maxStep: 3, count: 5 },
