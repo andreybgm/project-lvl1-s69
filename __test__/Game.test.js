@@ -50,13 +50,13 @@ describe('Game', () => {
     expect(game.fsm.current).toEqual(states.nameAsked);
   });
 
-  test('accept a user name when there\'s no questions', () => {
+  test('take a user\'s name when there\'s no questions', () => {
     const game = new Game(rule, []).start().takeUserName(name);
     expect(game.fsm.current).toEqual(states.win);
     expect(game.userName).toEqual(name);
   });
 
-  test('accept a user name when there\'s a single question', () => {
+  test('take a user\'s name when there\'s a single question', () => {
     const game = new Game(rule, allTasks.slice(0, 1)).start().takeUserName(name);
     expect(game.fsm.current).toEqual(states.questionAsked);
     expect(game.userName).toEqual(name);
