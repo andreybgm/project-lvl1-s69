@@ -38,7 +38,7 @@ describe('Game', () => {
     createTask('Are you a cow?', 'No'),
   ];
   const name = 'John Smith';
-  const wrongAnswer = 'Yes';
+  const wrongAnswerToLast = 'Yes';
 
   test('create the game', () => {
     const game = new Game(rule, []);
@@ -77,7 +77,7 @@ describe('Game', () => {
   test('a wrong answer', () => {
     const game = new Game(rule, allTasks).start().takeUserName(name);
     const answeredGame = answerUntilLast(game);
-    answerLastAndCheckLoss(answeredGame, allTasks, wrongAnswer);
+    answerLastAndCheckLoss(answeredGame, allTasks, wrongAnswerToLast);
   });
 
   test('a wrong call', () => {
