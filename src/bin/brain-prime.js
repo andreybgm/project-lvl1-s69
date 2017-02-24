@@ -2,4 +2,4 @@
 
 import run from '../games/brain-prime';
 
-run();
+run(3);

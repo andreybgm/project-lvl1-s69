@@ -1,7 +1,3 @@
-import { run } from './lib/game';
-
-const runGame = () => {
-  run();
-};
+import { runGame } from './lib/utils';
 
 export default runGame;

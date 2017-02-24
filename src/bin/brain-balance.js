@@ -2,4 +2,4 @@
 
 import run from '../games/brain-balance';
 
-run();
+run(3);

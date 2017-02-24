@@ -2,4 +2,4 @@
 
 import run from '../games/brain-even';
 
-run();
+run(3);

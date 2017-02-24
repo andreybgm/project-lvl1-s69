@@ -1,7 +1,5 @@
-import { run, taskGenerator } from '../lib/game';
-import { randomInt } from '../lib/utils';
+import { runGame, taskGenerator, randomInt } from '../lib/utils';
 
-const taskCount = 3;
 const progressionParams = {
   rangeStart: 1,
   rangeEnd: 999,
@@ -9,7 +7,7 @@ const progressionParams = {
   maxStep: 50,
   count: 10,
 };
-const rules = 'What number is missing in this progression?';
+const rule = 'What number is missing in this progression?';
 const missingNumberReplacement = '..';
 
 const makeProgression = (start, max, step, count) => {
@@ -38,8 +36,7 @@ const randomProgression = (params, randomizer = defaultRandomizer) => {
   const rightmostStart = params.rangeEnd - (step * (params.count - 1));
   const maxStart = Math.max(params.rangeStart, rightmostStart);
   const start = randomizer.start(params.rangeStart, maxStart);
-  const progression = makeProgression(
-    start, params.rangeEnd, step, params.count);
+  const progression = makeProgression(start, params.rangeEnd, step, params.count);
 
   return progression;
 };
@@ -62,10 +59,9 @@ const generateTasks = taskGenerator(
   ({ progression, missingIndex }) => progression[missingIndex].toString(),
 );
 
-const runGame = () => {
+export default (taskCount = 0) => {
   const tasks = generateTasks(taskCount);
-  run(rules, tasks);
+  runGame(rule, tasks);
 };
 
-export default runGame;
 export { makeProgression, randomProgression };

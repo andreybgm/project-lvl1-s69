@@ -1,11 +1,9 @@
-import { run, taskGenerator } from '../lib/game';
-import { randomInt } from '../lib/utils';
+import { runGame, taskGenerator, randomInt } from '../lib/utils';
 
-const taskCount = 3;
 const minValue = 1;
 const maxValue = 100;
 const answerOptions = { yes: 'yes', no: 'no' };
-const rules = [
+const rule = [
   `Answer "${answerOptions.yes}" if a number is prime, `,
   `otherwise answer "${answerOptions.no}".`,
 ].join('');
@@ -34,10 +32,9 @@ const generateTasks = taskGenerator(
   number => (isPrime(number) ? answerOptions.yes : answerOptions.no),
 );
 
-const runGame = () => {
+export default (taskCount = 0) => {
   const tasks = generateTasks(taskCount);
-  run(rules, tasks);
+  runGame(rule, tasks);
 };
 
-export default runGame;
 export { isPrime };

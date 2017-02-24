@@ -2,4 +2,4 @@
 
 import run from '../games/brain-gcd';
 
-run();
+run(3);

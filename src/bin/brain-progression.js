@@ -2,4 +2,4 @@
 
 import run from '../games/brain-progression';
 
-run();
+run(3);

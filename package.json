@@ -1,6 +1,6 @@
 {
   "name": "hexlet-practice-lvl1-andrey-bgm",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -39,6 +39,7 @@
     "jest": "^19.0.1"
   },
   "dependencies": {
+    "javascript-state-machine": "^2.4.0",
     "readline-sync": "^1.4.6"
   }
 }

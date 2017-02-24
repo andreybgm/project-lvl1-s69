@@ -1,10 +1,20 @@
-import { run, taskGenerator } from '../lib/game';
-import { gcd, randomInt } from '../lib/utils';
+import { runGame, taskGenerator, randomInt } from '../lib/utils';
 
-const taskCount = 3;
 const minValue = 2;
 const maxValue = 100;
-const rules = 'Find the greatest common divisor of the given numbers.';
+const rule = 'Find the greatest common divisor of the given numbers.';
+
+const gcd = (a, b) => {
+  const min = Math.min(a, b);
+  const max = Math.max(a, b);
+  const remainder = max % min;
+
+  if (remainder === 0) {
+    return min;
+  }
+
+  return gcd(min, remainder);
+};
 
 const generateTasks = taskGenerator(
   () => ({
@@ -15,9 +25,7 @@ const generateTasks = taskGenerator(
   ({ a, b }) => gcd(a, b).toString(),
 );
 
-const runGame = () => {
+export default (taskCount = 0) => {
   const tasks = generateTasks(taskCount);
-  run(rules, tasks);
+  runGame(rule, tasks);
 };
-
-export default runGame;

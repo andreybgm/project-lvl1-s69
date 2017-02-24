@@ -1,14 +1,14 @@
-import { run, taskGenerator } from '../lib/game';
-import { isEven, randomInt } from '../lib/utils';
+import { runGame, taskGenerator, randomInt } from '../lib/utils';
 
-const taskCount = 3;
 const minValue = 1;
 const maxValue = 100;
 const answerOptions = { yes: 'yes', no: 'no' };
-const rules = [
+const rule = [
   `Answer "${answerOptions.yes}" if a number is even, `,
   `otherwise answer "${answerOptions.no}".`,
 ].join('');
+
+const isEven = n => n % 2 === 0;
 
 const generateTasks = taskGenerator(
   () => randomInt(minValue, maxValue),
@@ -16,9 +16,7 @@ const generateTasks = taskGenerator(
   number => (isEven(number) ? answerOptions.yes : answerOptions.no),
 );
 
-const runGame = () => {
+export default (taskCount = 0) => {
   const tasks = generateTasks(taskCount);
-  run(rules, tasks);
+  runGame(rule, tasks);
 };
-
-export default runGame;

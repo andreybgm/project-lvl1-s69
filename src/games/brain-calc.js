@@ -1,10 +1,8 @@
-import { run, taskGenerator } from '../lib/game';
-import { randomInt } from '../lib/utils';
+import { runGame, taskGenerator, randomInt } from '../lib/utils';
 
-const taskCount = 3;
 const minValue = 1;
 const maxValue = 100;
-const rules = 'What is the result of the expression?';
+const rule = 'What is the result of the expression?';
 
 const biExpression = (fn, fnStr) => ({
   question: args => `${args[0]} ${fnStr} ${args[1]}`,
@@ -32,9 +30,7 @@ const generateTasks = taskGenerator(
   ({ expr, args }) => expr.answer(args),
 );
 
-const runGame = () => {
+export default (taskCount = 0) => {
   const tasks = generateTasks(taskCount);
-  run(rules, tasks);
+  runGame(rule, tasks);
 };
-
-export default runGame;

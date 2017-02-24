@@ -2,4 +2,4 @@
 
 import run from '../games/brain-calc';
 
-run();
+run(3);
