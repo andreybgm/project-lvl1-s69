@@ -75,7 +75,7 @@ export default class Game {
 
     const lastResult = [
       `'${answer}' is a wrong answer ;(. `,
-      `The correct answer was '${correctAnswer}'.`,
+      `The correct answer was '${task.answer}'.`,
     ].join('');
     const newFsm = sendFsmEvent(this.fsm, events.loss);
     return new Game(this.rule, this.tasks, newFsm, this.userName, lastResult);
