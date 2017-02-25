@@ -62,13 +62,13 @@ export default class Game {
 
   takeAnswer(answer) {
     const task = this.tasks[0];
-    const correctAnswer = task.answer === answer;
-    const lastTask = this.tasks.length === 1;
+    const answerIsCorrect = task.answer === answer;
+    const taskIsLast = this.tasks.length === 1;
 
-    if (correctAnswer && lastTask) {
+    if (answerIsCorrect && taskIsLast) {
       const newFsm = sendFsmEvent(this.fsm, events.win);
       return new Game(this.rule, this.tasks, newFsm, this.userName, correctMessage);
-    } else if (correctAnswer) {
+    } else if (answerIsCorrect) {
       const newFsm = sendFsmEvent(this.fsm, events.acceptAnswer);
       return new Game(this.rule, this.tasks.slice(1), newFsm, this.userName, correctMessage);
     }
