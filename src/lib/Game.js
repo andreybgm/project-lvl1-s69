@@ -34,13 +34,15 @@ const sendFsmEvent = (fsm, event) => {
   return newFsm;
 };
 
+const correctMessage = 'Correct!';
+
 export default class Game {
-  constructor(rule = '', tasks = [], fsm, userName = '', lastAnswer = '') {
+  constructor(rule = '', tasks = [], fsm, userName = '', lastResult = '') {
     this.rule = rule;
     this.tasks = tasks;
     this.fsm = fsm || createFsm();
     this.userName = userName;
-    this.lastAnswer = lastAnswer;
+    this.lastResult = lastResult;
   }
 
   start() {
@@ -65,14 +67,18 @@ export default class Game {
 
     if (correctAnswer && lastTask) {
       const newFsm = sendFsmEvent(this.fsm, events.win);
-      return new Game(this.rule, this.tasks, newFsm, this.userName, answer);
+      return new Game(this.rule, this.tasks, newFsm, this.userName, correctMessage);
     } else if (correctAnswer) {
       const newFsm = sendFsmEvent(this.fsm, events.acceptAnswer);
-      return new Game(this.rule, this.tasks.slice(1), newFsm, this.userName, answer);
+      return new Game(this.rule, this.tasks.slice(1), newFsm, this.userName, correctMessage);
     }
 
+    const lastResult = [
+      `'${answer}' is a wrong answer ;(. `,
+      `The correct answer was '${correctAnswer}'.`,
+    ].join('');
     const newFsm = sendFsmEvent(this.fsm, events.loss);
-    return new Game(this.rule, this.tasks, newFsm, this.userName, answer);
+    return new Game(this.rule, this.tasks, newFsm, this.userName, lastResult);
   }
 
   giveGreeting() {
@@ -87,12 +93,7 @@ export default class Game {
     if (this.fsm.current === states.win) {
       return `Congratulations, ${this.userName}!`;
     } else if (this.fsm.current === states.loss) {
-      const task = this.tasks[this.tasks.length - 1];
-      return [
-        `'${this.lastAnswer}' is a wrong answer ;(. `,
-        `The correct answer was '${task.answer}'.\n`,
-        `Let's try again, ${this.userName}!`,
-      ].join('');
+      return `Let's try again, ${this.userName}!`;
     }
 
     return '';

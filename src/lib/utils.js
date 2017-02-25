@@ -26,14 +26,16 @@ const taskGenerator = (generateData, generateQuestion, generateAnswer) => {
 
 const playGame = (game) => {
   if (game.isGameOver()) {
-    console.log(`\n${game.giveGoodbye()}`);
+    console.log(`${game.giveGoodbye()}`);
     return;
   }
 
   console.log(`Question: ${game.giveQuestion()}`);
   const userAnswer = readlineSync.question('Your answer: ');
+  const answeredGame = game.takeAnswer(userAnswer);
+  console.log(`${answeredGame.lastResult}\n`);
 
-  playGame(game.takeAnswer(userAnswer));
+  playGame(answeredGame);
 };
 
 const runGame = (rule = '', tasks = []) => {
