@@ -5,8 +5,8 @@ const maxValue = 100;
 const rule = 'What is the result of the expression?';
 
 const biExpression = (fn, fnStr) => ({
-  question: args => `${args[0]} ${fnStr} ${args[1]}`,
-  answer: args => (fn(args[0], args[1])).toString(),
+  calcQuestion: args => `${args[0]} ${fnStr} ${args[1]}`,
+  calcAnswer: args => (fn(args[0], args[1])).toString(),
 });
 
 const expressions = [
@@ -26,8 +26,8 @@ const generateTasks = taskGenerator(
 
     return { expr, args };
   },
-  ({ expr, args }) => expr.question(args),
-  ({ expr, args }) => expr.answer(args),
+  ({ expr, args }) => expr.calcQuestion(args),
+  ({ expr, args }) => expr.calcAnswer(args),
 );
 
 export default (taskCount = 0) => {
